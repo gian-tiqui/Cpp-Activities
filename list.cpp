@@ -2,8 +2,6 @@
 
 using std::cout;
 
-
-
 class Node {
 public:
     int val;
@@ -18,14 +16,6 @@ void print_list(NodePtr head) {
         cout << curr->val << " ";
         curr = curr->next;
     }
-}
-
-void reverse(NodePtr head) {
-    NodePtr curr = head;
-    while (curr) {
-        curr = curr->next;
-    }
-
 }
 
 void insert_front(NodePtr* head, int new_num) {
@@ -57,6 +47,24 @@ void append(NodePtr* head, int new_num) {
 	last->next = new_guy;
 }
 
+NodePtr reverse(NodePtr head) { 
+	NodePtr curr = head;
+	NodePtr next = NULL;
+	NodePtr prev = NULL;
+
+	// (c)0 - 1 - 2 - 3 - null
+	while (curr) {
+		next = curr->next; // (c)0 - (n)1 - 2 - 3 - 4 - null
+		curr->next = prev; // (c)0 - (p)1 - 2 - 3 - 4 - null
+		prev = curr; // 
+		curr = next; //
+	}
+
+	head = prev;
+
+	return head;
+}
+
 int main() {
 
     NodePtr head = new Node();
@@ -64,10 +72,12 @@ int main() {
     head->val = 0;
     head->next = NULL;
 
-	int n = 1;
+	for (int n = 1; n <= 3; ++n) {
+		// insert_front(&head, (n - (n * 2)));
+		append(&head, n);
+	}
 
-	insert_front(&head, (n - (n * 2)));
-	append(&head, n);
+	head = reverse(head);
 
     print_list(head);
 
