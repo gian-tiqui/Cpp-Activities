@@ -6,6 +6,18 @@ class Node {
 public:
     int val;
     Node *next;
+
+	Node() {
+		this->val = 0;
+		this->next = NULL;
+	}
+
+	Node(int n) {
+		this->val = n;
+		this->next = NULL;
+	}
+private:
+	std::string meow = "meow";
 };
 
 typedef Node* NodePtr;
@@ -52,12 +64,11 @@ NodePtr reverse(NodePtr head) {
 	NodePtr next = NULL;
 	NodePtr prev = NULL;
 
-	// (c)0 - 1 - 2 - 3 - null
 	while (curr) {
-		next = curr->next; // (c)0 - (n)1 - 2 - 3 - 4 - null
-		curr->next = prev; // (c)0 - (p)1 - 2 - 3 - 4 - null
-		prev = curr; // 
-		curr = next; //
+		next = curr->next; //  (curr)0 - (next)1 - 2 - 3 - null
+		curr->next = prev; //  (curr)0 - (next)(prev)1 - 2 - 3 - null
+		prev = curr; 	   //  (curr)0 - (next)(prev)0 - 2 - 3 null
+		curr = next;  	   //  (curr)1 - (next)(prev)0 - 2 - 3 - null
 	}
 
 	head = prev;
@@ -66,16 +77,9 @@ NodePtr reverse(NodePtr head) {
 }
 
 int main() {
-
     NodePtr head = new Node();
 
-    head->val = 0;
-    head->next = NULL;
-
-	for (int n = 1; n <= 3; ++n) {
-		// insert_front(&head, (n - (n * 2)));
-		append(&head, n);
-	}
+	for (int n = 1; n <= 3; ++n) append(&head, n);
 
 	head = reverse(head);
 
