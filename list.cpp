@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 
 using std::cout;
 
@@ -76,14 +77,43 @@ NodePtr reverse(NodePtr head) {
 	return head;
 }
 
+NodePtr merge_two_list(NodePtr list1, NodePtr list2) {
+	NodePtr curr = list1;
+    NodePtr curr2 = list2;
+    NodePtr last = list1; 
+
+    std::queue<int> nodes;
+
+    while (curr2) {
+        nodes.push(curr2->val);
+        curr2 = curr2->next; 
+    }
+
+    while (curr) {
+        last = curr; 
+        curr = curr->next;
+    }
+
+    while (!nodes.empty()) {
+        NodePtr new_guy = new Node(nodes.front());
+        nodes.pop();
+        last->next = new_guy; 
+        last = new_guy; 
+    }
+
+    return list1; 
+}
+
 int main() {
-    NodePtr head = new Node();
+    NodePtr list1 = new Node();
+	NodePtr list2 = new Node();
 
-	for (int n = 1; n <= 3; ++n) append(&head, n);
+	for (int n = 1; n <= 5; ++n) {
+		append(&list1, n);
+		append(&list2, n);
+	}
 
-	head = reverse(head);
-
-    print_list(head);
+    print_list(merge_two_list(list1, list2));
 
     return 0;
 }
