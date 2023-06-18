@@ -35,19 +35,20 @@ void insert_front(NodePtr* head, int new_num) {
 	NodePtr new_guy = new Node(); 
 	
 	new_guy->val = new_num; 
-	new_guy->next = *head; // New Guy is now the head
+	new_guy->next = *head;
 
-	*head = new_guy; // The head ptr now is New Guy
+	*head = new_guy;
 }
 
 void append(NodePtr* head, int new_num) {
 	NodePtr new_guy = new Node();
+	NodePtr curr = *head;
 
 	new_guy->val = new_num;
 	new_guy->next = NULL;
 	
-	if (!*head) {
-		*head = new_guy;
+	if (!curr) {
+		curr = new_guy;
 		return;
 	}
 
@@ -60,16 +61,25 @@ void append(NodePtr* head, int new_num) {
 	last->next = new_guy;
 }
 
+int len(NodePtr head, int n = 0) {
+	while (head) {
+		n++;
+		head = head->next;
+	}
+
+	return n;
+}
+
 NodePtr reverse(NodePtr head) { 
 	NodePtr curr = head;
 	NodePtr next = NULL;
 	NodePtr prev = NULL;
 
 	while (curr) {
-		next = curr->next; //  (curr)0 - (next)1 - 2 - 3 - null
-		curr->next = prev; //  (curr)0 - (next)(prev)1 - 2 - 3 - null
-		prev = curr; 	   //  (curr)0 - (next)(prev)0 - 2 - 3 null
-		curr = next;  	   //  (curr)1 - (next)(prev)0 - 2 - 3 - null
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;  	  
 	}
 
 	head = prev;
@@ -104,16 +114,20 @@ NodePtr merge_two_list(NodePtr list1, NodePtr list2) {
     return list1; 
 }
 
+NodePtr merge_two_sorted_list(NodePtr list1, NodePtr list2) { 
+	return NULL;
+}
+
 int main() {
-    NodePtr list1 = new Node();
-	NodePtr list2 = new Node();
+    NodePtr list1 = new Node(1);
+	NodePtr list2 = new Node(2);
 
-	for (int n = 1; n <= 5; ++n) {
+	for (int n = 2; n <= 5; ++n) {
 		append(&list1, n);
-		append(&list2, n);
+		append(&list2, n + n);
 	}
-
-    print_list(merge_two_list(list1, list2));
-
+	
+	print_list(merge_two_list(list1, list2));
+	
     return 0;
 }
