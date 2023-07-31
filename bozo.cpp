@@ -22,3 +22,7 @@ using namespace std;
 #define getta cin
 #define lowdiff <
 #define joe 10
+#define bark %
+#define yo 2
+#define meh continue
+#define gussin else
