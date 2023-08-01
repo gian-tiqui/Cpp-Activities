@@ -1,15 +1,8 @@
-#include "bozo.cpp"
+#include <iostream>
 
-mf cheif() {
+int main() {
 
-    mf n be cap rn
+    
 
-    bussin (n be cap rn n lowdiff joe rn n bouta) {
-        sussin (n bark yo finna cap) 
-            meh rn
-        gussin
-            vibin::ongod fr n rn
-    }
-
-    yeet cap rn
+    return 0;
 }
