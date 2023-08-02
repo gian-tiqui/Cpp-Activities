@@ -20,83 +20,7 @@
 
 using namespace std;
 
-class BinaryTreeNode {
-	
-    int key;
-    BinaryTreeNode *left, *right;
- 
-public:
-	
-	BinaryTreeNode() {
-		key = 0;
-		left = right = NULL;
-	}
- 
-    BinaryTreeNode(int data) {
-    	key = data;
-    	left = right = NULL;
-	}
- 
-    BinaryTreeNode* insert(BinaryTreeNode* root, int data) {
-    	
-    	if (root == NULL) 
-			root = new BinaryTreeNode(data);
-		else if (data < root->key) 
-			root->left = insert(root->left, data);
-		else 
-			root->right = insert(root->right, data);
-		
-		return root;
-	}
-	
-	void in_order(BinaryTreeNode* root) {
-		
-		if (root != NULL) {
-			in_order(root->left);
-			cout<<root->key<<endl;
-			in_order(root->right);
-		}
-	}
- 
-};
-
-class listNode{
-	
-	public:
-		int key;
-		listNode* next;
-		
-};
-
-void print_list(listNode* list){
-	
-	cout<<"List:"<<endl;
-	
-	while(list != NULL){
-		cout<<list->key<<endl;
-		list = list->next;
-	}
-}
-
-void print_queue(queue<int> q){
-	
-	while(!(q.empty())){
-		cout<<q.front()<<endl;
-		q.pop();
-	}
-}
-
 int main(){
-
-	cout<<endl<<endl<<"------------------ Binary Tree ------------------------"<<endl<<endl;
-
-	BinaryTreeNode tree, *root = NULL;
-    root = tree.insert(root, 5);
-    tree.insert(root, 7);
-    tree.insert(root, 3);
-    
-    cout<<"Binary Tree:"<<endl;
-    tree.in_order(root);
 
 	cout<<endl<<endl<<"--------------------    Map     --------------------------"<<endl<<endl;
 	
@@ -168,33 +92,6 @@ int main(){
 		cout<<nums.top()<<endl;
 		nums.pop();
 	}
-	
-	cout<<endl<<endl<<"-------------------- Linked List--------------------------"<<endl<<endl;
-	
-	/*
-	
-	Linked List are dynamic like vectors which links data through nodes
-	needs more memory
-	
-	Methods:
-	
-	
-	*/
-	
-	listNode* head = new listNode();
-	listNode* second = new listNode();
-	listNode* third = new listNode();
-	
-	head->key = 1;
-	head->next = second;
-	
-	second->key = 2;
-	second->next = third;
-	
-	third->key = 3;
-	third->next = NULL;
-	
-	print_list(head);
 	
 	/*
 	
@@ -301,7 +198,6 @@ int main(){
 	cout<<"Size of queue after 2 pops: "<<q.size()<<endl;
 	
 	cout<<"Queue:"<<endl;
-	print_queue(q);
 	
 	
 	
