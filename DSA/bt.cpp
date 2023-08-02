@@ -37,14 +37,3 @@ public:
         }
     }
 };
-
-int main() {
-    Node *root = new Node(5);
-
-    root->insert(root, 3);
-    root->insert(root, 7);
-
-    root->in_order(root);
-
-    return 0;
-}

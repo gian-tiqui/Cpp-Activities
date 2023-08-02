@@ -12,7 +12,7 @@ void dfs(map<int, vector<int>> graph, int source);
 
 void bfs(map<int, vector<int>> graph, int source);
 
-int main() {
+void graph() {
 	
 	map<int, vector<int>> graph;
 	vector<int> one{2, 3}, two{4}, three{5}, four{6}, five, six;

@@ -29,7 +29,7 @@ void generateRandomNumbers();
 bool isNumberInSet(int setIndex);
 int getUsersNumber();
 
-int main() {
+void start_game() {
     char input; bool isRunning = true;
    
     do {
@@ -61,8 +61,6 @@ int main() {
     	    cout << "You have entered an invalid input." << endl;
     	}
     } while(isRunning);
-    
-    return 0;
 }
 
 bool isWithinSet(int set[5], int number){
